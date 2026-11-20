@@ -1,0 +1,60 @@
+// PORTOKO design tokens as SCSS variables, for modules that compile SCSS.
+// Runtime code should prefer the CSS custom properties in tokens.scss (--ptk-*).
+
+$ptk-paper: #eeede8 !default;
+$ptk-surface: #ffffff !default;
+$ptk-surface-sunk: #f7f6f2 !default;
+$ptk-ink: #111111 !default;
+$ptk-muted: #4a4a45 !default;
+$ptk-line: #d8d6ce !default;
+
+$ptk-brand-green: #1fa463 !default;
+$ptk-brand-green-deep: #0b6b3f !default;
+$ptk-brand-graphite: #2a2a2a !default;
+$ptk-gold: #c9a44c !default;
+
+$ptk-barcode: #d9ff5c !default;
+$ptk-barcode-deep: #0b6b3f !default;
+$ptk-barcode-ink: #06381f !default;
+$ptk-barcode-fill: #7fd86a !default;
+$ptk-pos: #ff6b1a !default;
+$ptk-pos-deep: #b83a00 !default;
+$ptk-pos-ink: #2a0b00 !default;
+$ptk-pos-fill: #ffc94a !default;
+$ptk-forecast: #2430b8 !default;
+$ptk-forecast-deep: #14196b !default;
+$ptk-forecast-tint: #bfd0ff !default;
+$ptk-forecast-fill: #3b5bff !default;
+$ptk-bi: #a3157a !default;
+$ptk-bi-deep: #4a0a33 !default;
+$ptk-bi-tint: #ffc2e2 !default;
+$ptk-bi-fill: #e0389a !default;
+
+$ptk-ok-bg: #d9ff5c !default;
+$ptk-ok-fg: #06381f !default;
+$ptk-warn-bg: #ffe2cc !default;
+$ptk-warn-fg: #8a2e00 !default;
+$ptk-stop-bg: #ffdad6 !default;
+$ptk-stop-fg: #9b1c1c !default;
+$ptk-focus: #2430b8 !default;
+
+$ptk-font-sans: "Atkinson Hyperlegible Next", system-ui, sans-serif !default;
+$ptk-font-mono: "Atkinson Hyperlegible Mono", ui-monospace, monospace !default;
+$ptk-font-display: "Silkscreen", "Atkinson Hyperlegible Mono", monospace !default;
+
+$ptk-radius-s: 10px !default;
+$ptk-radius-m: 18px !default;
+$ptk-radius-l: 22px !default;
+$ptk-radius-xl: 28px !default;
+$ptk-radius-pill: 999px !default;
+
+$ptk-target-min: 48px !default;
+$ptk-target-primary: 64px !default;
+$ptk-target-dense: 44px !default;
+
+// Ornament tiles as static SVG, for CSS backgrounds (navbar strip, home band).
+// The <use> sprite in js/ornaments.js is the richer version for markup.
+// Tumpal: the triangle border of a batik sarong, gold fine line.
+$ptk-orn-tumpal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpath d='M0 5 5 .7 10 5' fill='none' stroke='%23c9a44c' stroke-width='.8'/%3E%3Ccircle cx='5' cy='3.7' r='.55' fill='%23c9a44c'/%3E%3C/svg%3E") !default;
+// Kawung: four petals and a centre dot, deep green fine line.
+$ptk-orn-kawung: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cg fill='none' stroke='%230b6b3f' stroke-width='.8'%3E%3Cellipse cx='8' cy='4.2' rx='2.3' ry='3.4'/%3E%3Cellipse cx='8' cy='11.8' rx='2.3' ry='3.4'/%3E%3Cellipse cx='4.2' cy='8' rx='3.4' ry='2.3'/%3E%3Cellipse cx='11.8' cy='8' rx='3.4' ry='2.3'/%3E%3C/g%3E%3Cg fill='%230b6b3f'%3E%3Ccircle cx='8' cy='8' r='.9'/%3E%3Ccircle cx='0' cy='8' r='.6'/%3E%3Ccircle cx='16' cy='8' r='.6'/%3E%3C/g%3E%3C/svg%3E") !default;

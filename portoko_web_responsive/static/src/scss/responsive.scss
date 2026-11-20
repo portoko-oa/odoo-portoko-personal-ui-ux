@@ -1,0 +1,110 @@
+// Copyright 2026 PORTOKO
+// License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+//
+// Responsive and touch fixes for the backend (phones, tablets, Android
+// scanners, small laptops). Rules come from the PORTOKO work-screen UX:
+// 48px targets on touch, no zoom jumps, no sideways scrolling.
+
+// ---------------------------------------------------------------- touch
+@media (pointer: coarse) {
+    .o_web_client {
+        // iOS Safari zooms into any input under 16px and never zooms back.
+        input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+        select,
+        textarea,
+        .o_input {
+            font-size: unquote("max(16px, 1em)");
+        }
+
+        // Bigger targets where people tap most.
+        .o_control_panel .btn:not(.btn-link),
+        .o_form_statusbar .o_statusbar_buttons .btn,
+        .modal-footer .btn,
+        .o-mail-Chatter-topbar .btn,
+        .o_pager .btn {
+            min-height: $ptk-target-dense;
+        }
+
+        .o_pager .btn {
+            min-width: $ptk-target-dense;
+        }
+
+        .dropdown-item,
+        .o-dropdown-item {
+            min-height: $ptk-target-dense;
+            display: flex;
+            align-items: center;
+        }
+
+        // Checkboxes you can actually hit with a thumb (or a glove).
+        .o_list_record_selector,
+        .o_list_record_selector + th {
+            min-width: $ptk-target-dense;
+        }
+
+        .o_list_record_selector .form-check-input,
+        .o_field_boolean .form-check-input {
+            width: 1.35em;
+            height: 1.35em;
+        }
+
+        // No grey flash on tap; we show our own pressed state.
+        a,
+        button,
+        .btn {
+            -webkit-tap-highlight-color: transparent;
+        }
+    }
+}
+
+// ---------------------------------------------------------------- phones
+@include media-breakpoint-down(md) {
+    // Long words (product names, emails, refs) must wrap, not push the page.
+    .o_form_view .o_form_sheet .o_field_widget,
+    .o_form_view .oe_title {
+        overflow-wrap: anywhere;
+    }
+
+    .o_form_view .oe_title h1 {
+        font-size: 1.5rem;
+    }
+}
+
+// ---------------------------------------------------------------- side chatter
+// "Side" preference on 1200px+ screens below Odoo's own XXL breakpoint:
+// Odoo only switches the renderer to a row at XXL, so do it here. Sizes of
+// the sheet and the chatter stay Odoo's own.
+.o_form_view.ptk-side-chatter .o_form_renderer {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    height: 100%;
+}
+
+// "Bottom" preference on XXL screens: Odoo renders the form as a row there,
+// stack sheet and chatter again and let the page scroll as on smaller screens.
+.o_form_view.ptk-bottom-chatter .o_form_renderer {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    height: auto !important;
+
+    > .o_form_sheet_bg {
+        flex: 0 0 auto;
+        width: auto;
+    }
+}
+
+// On 1200-1533px keep the chatter slim so order lines keep their room.
+@media (max-width: 1533.98px) {
+    .o_form_view.ptk-side-chatter .o-mail-Form-chatter.o-aside {
+        flex: 0 0 400px;
+        width: 400px;
+    }
+}
+
+// ---------------------------------------------------------------- print
+@media print {
+    .o_main_navbar::after,
+    .ptk-home {
+        display: none !important;
+    }
+}

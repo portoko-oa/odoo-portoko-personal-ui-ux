@@ -1,0 +1,374 @@
+// Copyright 2026 PORTOKO
+// License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+
+body.ptk-home-open {
+    overflow: hidden;
+}
+
+.ptk-home {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 46px; // replaced inline with the measured navbar bottom
+    z-index: $zindex-fixed;
+    display: flex;
+    flex-direction: column;
+    background: $ptk-paper;
+    color: $ptk-ink;
+    font-family: $ptk-font-sans;
+
+    &__band {
+        flex: 0 0 16px;
+        background: $ptk-orn-kawung repeat-x center / 16px 16px;
+        border-bottom: 1px solid $ptk-line;
+        opacity: 0.7;
+
+        &--bottom {
+            flex-basis: calc(16px + env(safe-area-inset-bottom, 0px));
+            background-position: center top;
+            border-top: 1px solid $ptk-line;
+            border-bottom: 0;
+        }
+    }
+
+    &__scroll {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    &__inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 24px 16px 32px;
+        padding-left: unquote("max(16px, env(safe-area-inset-left, 0px))");
+        padding-right: unquote("max(16px, env(safe-area-inset-right, 0px))");
+    }
+
+    &__head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    // First in the DOM (so it takes the initial focus instead of the search
+    // input on phones), last on screen.
+    &__close {
+        order: 3;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $ptk-target-min;
+        height: $ptk-target-min;
+        border: 2px solid $ptk-line;
+        border-radius: $ptk-radius-pill;
+        background: $ptk-surface;
+        color: $ptk-ink;
+        font-size: 1.1rem;
+        cursor: pointer;
+
+        &:hover {
+            border-color: $ptk-ink;
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px $ptk-focus;
+        }
+    }
+}
+
+.ptk-wordmark {
+    flex-shrink: 0;
+    font: 700 22px/1 $ptk-font-display;
+    letter-spacing: 0.02em;
+    color: $ptk-brand-green-deep; // fallback when background-clip text is unsupported
+    background: linear-gradient(90deg, $ptk-brand-graphite, $ptk-brand-green);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    user-select: none;
+
+    @include media-breakpoint-down(sm) {
+        display: none;
+    }
+}
+
+// ---------------------------------------------------------------- search
+.ptk-search {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+
+    order: 2;
+
+    &__icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $ptk-muted;
+        pointer-events: none;
+    }
+
+    &__input {
+        width: 100%;
+        height: $ptk-target-min;
+        padding: 0 52px 0 46px;
+        border: 2px solid $ptk-line;
+        border-radius: $ptk-radius-pill;
+        background: $ptk-surface;
+        color: $ptk-ink;
+        font: 400 16px/1.2 $ptk-font-sans; // 16px: no iOS zoom on focus
+        appearance: none;
+
+        &::placeholder {
+            color: $ptk-muted;
+            opacity: 1;
+        }
+
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-decoration {
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $ptk-ink;
+            box-shadow: 0 0 0 3px $ptk-focus;
+        }
+    }
+
+    &__clear {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: $ptk-radius-pill;
+        background: transparent;
+        color: $ptk-ink;
+        cursor: pointer;
+
+        &:hover {
+            background: $ptk-surface-sunk;
+        }
+
+        &:focus-visible {
+            outline: 3px solid $ptk-focus;
+        }
+    }
+}
+
+// ---------------------------------------------------------------- app grid
+.ptk-apps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 8px;
+
+    @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+        gap: 16px;
+    }
+}
+
+.ptk-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 112px;
+    padding: 14px 6px 12px;
+    border-radius: $ptk-radius-m;
+    color: $ptk-ink;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+
+    &:hover {
+        background: $ptk-surface;
+        color: $ptk-ink;
+    }
+
+    &:focus-visible {
+        outline: none;
+        background: $ptk-surface;
+        box-shadow: 0 0 0 3px $ptk-focus;
+    }
+
+    &:active {
+        background: $ptk-surface-sunk;
+    }
+
+    &__icon {
+        display: block;
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
+
+        img,
+        .ptk-font-icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            object-fit: contain;
+        }
+    }
+
+    &__name {
+        max-width: 100%;
+        font: 600 14px/1.25 $ptk-font-sans;
+        text-align: center;
+        overflow-wrap: anywhere;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    // Current app: a lime "you are here" dot (glow = state).
+    &.is-current::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: $ptk-barcode;
+        box-shadow: 0 0 0 2px $ptk-barcode-ink;
+    }
+
+    &.is-loading {
+        opacity: 0.55;
+        cursor: progress;
+    }
+}
+
+.ptk-font-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+// ---------------------------------------------------------------- results
+.ptk-results {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    background: $ptk-surface;
+    border-radius: $ptk-radius-l;
+}
+
+.ptk-result {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: $ptk-target-min;
+    padding: 8px 14px;
+    border-radius: $ptk-radius-m;
+    color: $ptk-ink;
+    text-decoration: none;
+
+    &:hover {
+        color: $ptk-ink;
+    }
+
+    &.is-active {
+        background: $ptk-surface-sunk;
+        box-shadow: inset 0 0 0 2px $ptk-ink;
+    }
+
+    &.is-loading {
+        opacity: 0.55;
+        cursor: progress;
+    }
+
+    &__icon {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        object-fit: contain;
+
+        &.ptk-font-icon {
+            font-size: 14px;
+        }
+    }
+
+    &__path {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 15px;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+
+        mark {
+            padding: 0 1px;
+            border-radius: 3px;
+            background: $ptk-barcode;
+            color: $ptk-barcode-ink;
+            font-weight: 600;
+        }
+    }
+
+    &__enter {
+        flex-shrink: 0;
+        font-family: $ptk-font-mono;
+        color: $ptk-muted;
+        visibility: hidden;
+    }
+
+    &.is-active &__enter {
+        visibility: visible;
+    }
+
+    @media (pointer: coarse) {
+        &__enter {
+            display: none;
+        }
+    }
+}
+
+// ---------------------------------------------------------------- empty
+.ptk-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 48px 16px;
+    text-align: center;
+    color: $ptk-muted;
+
+    &__art {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 8px;
+        color: $ptk-brand-green-deep;
+    }
+
+    &__title {
+        max-width: 100%;
+        color: $ptk-ink;
+        font-weight: 600;
+        font-size: 16px;
+        overflow-wrap: anywhere;
+    }
+
+    &__text {
+        font-size: 14px;
+    }
+}

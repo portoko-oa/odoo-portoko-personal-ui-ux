@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="portoko_ui.Ornament">
+        <svg t-att-class="'ptk-orn ' + (props.class or '')" t-att-style="props.style" t-att-viewBox="viewBox" aria-hidden="true" focusable="false">
+            <use t-att-href="'#ptk-' + props.name" width="100%" height="100%" t-att-style="useStyle"/>
+        </svg>
+    </t>
+
+    <t t-name="portoko_ui.Emblem">
+        <PtkOrnament name="'em'" ln="c.orn" dt="c.orn" fl="c.fill" bg="c.color"
+            style="'width:' + props.size + 'px;height:' + props.size + 'px;flex-shrink:0'"/>
+    </t>
+
+    <t t-name="portoko_ui.ModuleHeader">
+        <header class="ptk ptk-header" t-att-data-ptk-module="props.module">
+            <t t-if="props.ornaments">
+                <PtkOrnament name="'sd'" ln="c.orn" dt="c.orn" fl="c.fill" class="'ptk-header-corner'"/>
+                <PtkOrnament name="'pg'" ln="c.orn" dt="c.orn" fl="c.fill" class="'ptk-header-strip'"/>
+            </t>
+            <h1 class="ptk-header-title" t-esc="props.title"/>
+            <div t-if="props.subtitle" class="ptk-header-sub" t-esc="props.subtitle"/>
+            <div t-if="props.slots and props.slots.default" class="ptk-header-body"><t t-slot="default"/></div>
+        </header>
+    </t>
+
+    <t t-name="portoko_ui.StatusIcon">
+        <svg t-if="ptk_state === 'ok'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
+        <svg t-elif="ptk_state === 'warn'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17.5v.5"/></svg>
+        <svg t-elif="ptk_state === 'stop'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>
+        <svg t-else="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/></svg>
+    </t>
+
+    <t t-name="portoko_ui.StatusChip">
+        <span t-attf-class="ptk-status ptk-status-{{ props.state }}">
+            <t t-call="portoko_ui.StatusIcon"><t t-set="ptk_state" t-value="props.state"/></t>
+            <span t-esc="props.label"/>
+        </span>
+    </t>
+
+    <t t-name="portoko_ui.ScanFeedback">
+        <div t-attf-class="ptk ptk-scan ptk-scan-{{ props.state }}" role="status" aria-live="polite">
+            <span class="ptk-scan-icon">
+                <PtkOrnament t-if="props.state === 'ok'" name="'px-kw'" px="'#d9ff5c'" style="'width:30px;height:30px'"/>
+                <t t-else="" t-call="portoko_ui.StatusIcon"><t t-set="ptk_state" t-value="props.state"/></t>
+            </span>
+            <span class="ptk-scan-text">
+                <span class="ptk-scan-state" t-esc="props.title"/>
+                <span t-if="props.text" t-esc="props.text"/>
+            </span>
+            <span t-if="props.qty" class="ptk-scan-qty" t-esc="props.qty"/>
+        </div>
+    </t>
+
+    <t t-name="portoko_ui.Kpi">
+        <div class="ptk ptk-card ptk-kpi">
+            <span class="ptk-kpi-label" t-esc="props.label"/>
+            <span class="ptk-kpi-value" t-esc="props.value"/>
+            <span t-if="props.note" t-attf-class="ptk-kpi-note ptk-kpi-note-{{ props.tone }}" t-esc="props.note"/>
+        </div>
+    </t>
+
+    <t t-name="portoko_ui.EmptyState">
+        <div class="ptk ptk-empty" t-att-data-ptk-module="props.module">
+            <div class="ptk-empty-art">
+                <PtkOrnament name="'px-kw'" px="c.light" style="'width:68px;height:68px'"/>
+            </div>
+            <div class="ptk-empty-body">
+                <span class="ptk-empty-title" t-esc="props.title"/>
+                <span t-if="props.text" class="ptk-empty-text" t-esc="props.text"/>
+                <div t-if="props.slots and props.slots.default"><t t-slot="default"/></div>
+            </div>
+        </div>
+    </t>
+
+</templates>

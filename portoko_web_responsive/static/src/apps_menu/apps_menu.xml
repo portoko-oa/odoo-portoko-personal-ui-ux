@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 PORTOKO
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<templates xml:space="preserve">
+
+    <!-- Navbar: our home button replaces Odoo's apps dropdown on every size.
+         On phones Odoo's own burger (current app sections) stays next to it. -->
+    <t t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//t[@t-if='this.ui.isSmall']" position="before">
+            <PortokoAppsMenu t-if="!isScopedApp" />
+        </xpath>
+        <!-- Drop the desktop branch (dropdown + its t-else spacer) as a whole,
+             so no orphan t-else is left behind. -->
+        <xpath expr="//div[hasclass('o_navbar_apps_menu')]/.." position="replace" />
+    </t>
+
+    <t t-name="portoko_web_responsive.AppsMenu">
+        <button
+            type="button"
+            class="ptk-home-toggle o_menu_toggle_ptk"
+            t-att-class="{'is-open': homeState.open}"
+            t-att-aria-expanded="homeState.open ? 'true' : 'false'"
+            aria-haspopup="dialog"
+            t-att-title="label"
+            t-att-aria-label="label"
+            data-hotkey="h"
+            t-on-click.prevent="onToggle"
+        >
+            <i class="oi oi-apps" aria-hidden="true" />
+        </button>
+        <t t-if="homeState.open">
+            <t t-portal="'body'">
+                <PortokoHomeScreen />
+            </t>
+        </t>
+    </t>
+
+    <t t-name="portoko_web_responsive.HomeScreen">
+        <div
+            class="ptk-home"
+            t-ref="root"
+            t-attf-style="top: {{state.top}}px;"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Home"
+            t-on-keydown="onKeydown"
+        >
+            <div class="ptk-home__band" aria-hidden="true" />
+            <div class="ptk-home__scroll">
+                <div class="ptk-home__inner">
+                    <div class="ptk-home__head">
+                        <button
+                            t-if="canClose"
+                            type="button"
+                            class="ptk-home__close"
+                            title="Close"
+                            aria-label="Close"
+                            t-on-click="() => this.home.close()"
+                        >
+                            <i class="oi oi-close" aria-hidden="true" />
+                        </button>
+                        <span class="ptk-wordmark" aria-hidden="true">PORTOKO</span>
+                        <div class="ptk-search" role="search">
+                            <i class="fa fa-search ptk-search__icon" aria-hidden="true" />
+                            <input
+                                t-ref="search"
+                                type="search"
+                                class="ptk-search__input"
+                                t-att-value="state.query"
+                                t-on-input="onInput"
+                                t-att-maxlength="maxQueryLength"
+                                placeholder="Search menus…"
+                                aria-label="Search menus"
+                                role="combobox"
+                                aria-autocomplete="list"
+                                aria-controls="ptk-home-results"
+                                t-att-aria-expanded="hasQuery ? 'true' : 'false'"
+                                t-att-aria-activedescendant="hasQuery and results.length ? 'ptk-result-' + state.activeIndex : ''"
+                                autocomplete="off"
+                                autocapitalize="off"
+                                autocorrect="off"
+                                spellcheck="false"
+                                enterkeyhint="go"
+                            />
+                            <button
+                                t-if="state.query"
+                                type="button"
+                                class="ptk-search__clear"
+                                aria-label="Clear search"
+                                title="Clear search"
+                                t-on-click="clearQuery"
+                            >
+                                <i class="oi oi-close" aria-hidden="true" />
+                            </button>
+                        </div>
+                    </div>
+
+                    <t t-if="hasQuery">
+                        <t t-set="found" t-value="results" />
+                        <ul t-if="found.length" id="ptk-home-results" class="ptk-results" role="listbox">
+                            <li
+                                t-foreach="found"
+                                t-as="result"
+                                t-key="result.id"
+                                role="option"
+                                t-att-id="'ptk-result-' + result_index"
+                                t-att-aria-selected="result_index === state.activeIndex ? 'true' : 'false'"
+                            >
+                                <a
+                                    class="ptk-result"
+                                    t-att-class="{'is-active': result_index === state.activeIndex, 'is-loading': state.loadingId === result.id}"
+                                    t-att-href="href(result.menu)"
+                                    t-att-data-menu-xmlid="result.menu.xmlid"
+                                    t-att-data-result-index="result_index"
+                                    tabindex="-1"
+                                    t-on-click="(ev) => this.onItemClick(ev, result.menu)"
+                                    t-on-mousemove="() => this.onResultHover(result_index)"
+                                >
+                                    <t t-set="ic" t-value="icon(result.menu)" />
+                                    <img t-if="ic.src" class="ptk-result__icon" t-att-src="ic.src" alt="" draggable="false" />
+                                    <span
+                                        t-else=""
+                                        class="ptk-result__icon ptk-font-icon"
+                                        t-attf-style="color: {{ic.color}}; background-color: {{ic.bg}};"
+                                    ><i t-att-class="ic.iconClass" aria-hidden="true" /></span>
+                                    <span class="ptk-result__path">
+                                        <t t-foreach="result.parts" t-as="part" t-key="part_index">
+                                            <mark t-if="part.hit" t-esc="part.text" />
+                                            <t t-else="" t-esc="part.text" />
+                                        </t>
+                                    </span>
+                                    <span class="ptk-result__enter" aria-hidden="true">↵</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div t-else="" class="ptk-empty" role="status">
+                            <svg class="ptk-empty__art" viewBox="0 0 64 64" aria-hidden="true">
+                                <g fill="none" stroke="currentColor" stroke-width="1.2">
+                                    <ellipse cx="32" cy="18" rx="8" ry="12" />
+                                    <ellipse cx="32" cy="46" rx="8" ry="12" />
+                                    <ellipse cx="18" cy="32" rx="12" ry="8" />
+                                    <ellipse cx="46" cy="32" rx="12" ry="8" />
+                                </g>
+                                <g fill="currentColor">
+                                    <circle cx="32" cy="32" r="2" />
+                                    <circle cx="32" cy="18" r="1.2" />
+                                    <circle cx="32" cy="46" r="1.2" />
+                                    <circle cx="18" cy="32" r="1.2" />
+                                    <circle cx="46" cy="32" r="1.2" />
+                                </g>
+                            </svg>
+                            <div class="ptk-empty__title" t-esc="emptyTitle" />
+                            <div class="ptk-empty__text">Try another word, for example the app name.</div>
+                        </div>
+                    </t>
+                    <div t-else="" class="ptk-apps" role="list">
+                        <a
+                            t-foreach="apps"
+                            t-as="app"
+                            t-key="app.id"
+                            class="ptk-tile"
+                            role="listitem"
+                            t-att-class="{'is-current': app.id === currentAppId, 'is-loading': state.loadingId === app.id}"
+                            t-att-href="href(app)"
+                            t-att-data-menu-xmlid="app.xmlid"
+                            t-att-aria-current="app.id === currentAppId ? 'page' : false"
+                            draggable="false"
+                            t-on-click="(ev) => this.onItemClick(ev, app)"
+                        >
+                            <t t-set="ic" t-value="icon(app)" />
+                            <span class="ptk-tile__icon">
+                                <img t-if="ic.src" t-att-src="ic.src" alt="" draggable="false" />
+                                <span
+                                    t-else=""
+                                    class="ptk-font-icon"
+                                    t-attf-style="color: {{ic.color}}; background-color: {{ic.bg}};"
+                                ><i t-att-class="ic.iconClass" aria-hidden="true" /></span>
+                            </span>
+                            <span class="ptk-tile__name" t-esc="app.name" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="ptk-home__band ptk-home__band--bottom" aria-hidden="true" />
+        </div>
+    </t>
+</templates>

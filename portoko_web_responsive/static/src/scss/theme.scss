@@ -1,0 +1,104 @@
+// Copyright 2026 PORTOKO
+// License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+//
+// PORTOKO look for the Odoo backend. Restraint on purpose: colour and
+// ornament on the frame (navbar, home screen), work areas stay calm.
+
+// ---------------------------------------------------------------- navbar
+.o_main_navbar {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 5px;
+        background: $ptk-orn-tumpal repeat-x left bottom / 10px 5px;
+        opacity: 0.85;
+        pointer-events: none;
+    }
+
+    .o_menu_brand {
+        font-family: $ptk-font-display;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+    }
+}
+
+.ptk-home-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--o-navbar-height, 46px);
+    height: var(--o-navbar-height, 46px);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.25rem;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    &:focus-visible {
+        outline: 3px solid $ptk-barcode;
+        outline-offset: -3px;
+    }
+
+    // Glow = state: lime means "home is open".
+    &.is-open {
+        background: $ptk-barcode;
+        color: $ptk-barcode-ink;
+    }
+}
+
+// ---------------------------------------------------------------- numbers
+// Every number in Atkinson Hyperlegible Mono (tables, totals, numeric fields, pager).
+.o_list_renderer {
+    td.o_list_number,
+    .o_list_footer .o_list_number,
+    .o_group_header .o_list_number {
+        font-family: $ptk-font-mono;
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+.o_form_view {
+    .o_field_monetary,
+    .o_field_float,
+    .o_field_integer,
+    .o_field_float_time,
+    .o_field_percentage {
+        font-family: $ptk-font-mono;
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+.o_pager_counter {
+    font-family: $ptk-font-mono;
+}
+
+// ---------------------------------------------------------------- focus
+// One visible ring for keyboard users, 3px focus blue outside the control.
+.o_web_client {
+    .btn:focus-visible,
+    .dropdown-item:focus-visible,
+    .o-dropdown-item:focus-visible {
+        outline: 3px solid $ptk-focus;
+        outline-offset: 2px;
+        box-shadow: none;
+    }
+}
+
+// ---------------------------------------------------------------- surfaces
+@include media-breakpoint-up(md) {
+    .o_form_view .o_form_sheet_bg > .o_form_sheet {
+        border-radius: $ptk-radius-l;
+    }
+}

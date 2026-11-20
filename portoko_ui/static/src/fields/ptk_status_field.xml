@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="portoko_ui.PtkStatusField">
+        <span t-if="label" t-attf-class="ptk-status ptk-status-{{ state }}" t-att-data-ptk-state="state">
+            <t t-call="portoko_ui.StatusIcon"><t t-set="ptk_state" t-value="state"/></t>
+            <span t-esc="label"/>
+        </span>
+    </t>
+</templates>

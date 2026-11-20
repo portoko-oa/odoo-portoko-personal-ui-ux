@@ -1,0 +1,95 @@
+// PORTOKO tokens as CSS custom properties. Every value is prefixed --ptk- so nothing
+// collides with Odoo's own variables. Nothing here restyles Odoo: classes do that.
+
+:root {
+    --ptk-paper: #{$ptk-paper};
+    --ptk-surface: #{$ptk-surface};
+    --ptk-surface-sunk: #{$ptk-surface-sunk};
+    --ptk-ink: #{$ptk-ink};
+    --ptk-muted: #{$ptk-muted};
+    --ptk-line: #{$ptk-line};
+
+    --ptk-brand-green: #{$ptk-brand-green};
+    --ptk-brand-green-deep: #{$ptk-brand-green-deep};
+    --ptk-brand-graphite: #{$ptk-brand-graphite};
+    --ptk-gold: #{$ptk-gold};
+
+    --ptk-barcode: #{$ptk-barcode};
+    --ptk-barcode-deep: #{$ptk-barcode-deep};
+    --ptk-barcode-ink: #{$ptk-barcode-ink};
+    --ptk-barcode-fill: #{$ptk-barcode-fill};
+    --ptk-pos: #{$ptk-pos};
+    --ptk-pos-deep: #{$ptk-pos-deep};
+    --ptk-pos-ink: #{$ptk-pos-ink};
+    --ptk-pos-fill: #{$ptk-pos-fill};
+    --ptk-forecast: #{$ptk-forecast};
+    --ptk-forecast-deep: #{$ptk-forecast-deep};
+    --ptk-forecast-tint: #{$ptk-forecast-tint};
+    --ptk-forecast-fill: #{$ptk-forecast-fill};
+    --ptk-bi: #{$ptk-bi};
+    --ptk-bi-deep: #{$ptk-bi-deep};
+    --ptk-bi-tint: #{$ptk-bi-tint};
+    --ptk-bi-fill: #{$ptk-bi-fill};
+
+    --ptk-ok-bg: #{$ptk-ok-bg};
+    --ptk-ok-fg: #{$ptk-ok-fg};
+    --ptk-warn-bg: #{$ptk-warn-bg};
+    --ptk-warn-fg: #{$ptk-warn-fg};
+    --ptk-stop-bg: #{$ptk-stop-bg};
+    --ptk-stop-fg: #{$ptk-stop-fg};
+    --ptk-focus: #{$ptk-focus};
+
+    --ptk-font-sans: #{$ptk-font-sans};
+    --ptk-font-mono: #{$ptk-font-mono};
+    --ptk-font-display: #{$ptk-font-display};
+
+    --ptk-radius-s: #{$ptk-radius-s};
+    --ptk-radius-m: #{$ptk-radius-m};
+    --ptk-radius-l: #{$ptk-radius-l};
+    --ptk-radius-xl: #{$ptk-radius-xl};
+    --ptk-radius-pill: 999px;
+
+    --ptk-target-min: #{$ptk-target-min};
+    --ptk-target-primary: #{$ptk-target-primary};
+    --ptk-target-dense: #{$ptk-target-dense};
+
+    --ptk-ring-focus: 0 0 0 3px #{$ptk-focus};
+    --ptk-glow-ok: 0 0 0 3px #0a0a0a, 0 0 0 6px #{$ptk-barcode}, 0 0 28px rgba(217, 255, 92, 0.55);
+
+    // default module = brand green, so components work outside a module too
+    --ptk-module: #{$ptk-brand-green-deep};
+    --ptk-module-deep: #{$ptk-brand-green-deep};
+    --ptk-module-ink: #ffffff;
+    --ptk-module-orn: #{$ptk-barcode};
+    --ptk-module-fill: #{$ptk-brand-green};
+}
+
+// One module, one thread colour: put data-ptk-module on any root element.
+[data-ptk-module="barcode"] {
+    --ptk-module: var(--ptk-barcode);
+    --ptk-module-deep: var(--ptk-barcode-deep);
+    --ptk-module-ink: var(--ptk-barcode-ink);
+    --ptk-module-orn: var(--ptk-barcode-deep);
+    --ptk-module-fill: var(--ptk-barcode-fill);
+}
+[data-ptk-module="pos"] {
+    --ptk-module: var(--ptk-pos);
+    --ptk-module-deep: var(--ptk-pos-deep);
+    --ptk-module-ink: var(--ptk-pos-ink);
+    --ptk-module-orn: var(--ptk-pos-ink);
+    --ptk-module-fill: var(--ptk-pos-fill);
+}
+[data-ptk-module="forecast"] {
+    --ptk-module: var(--ptk-forecast);
+    --ptk-module-deep: var(--ptk-forecast-deep);
+    --ptk-module-ink: #ffffff;
+    --ptk-module-orn: var(--ptk-forecast-tint);
+    --ptk-module-fill: var(--ptk-forecast-fill);
+}
+[data-ptk-module="bi"] {
+    --ptk-module: var(--ptk-bi);
+    --ptk-module-deep: var(--ptk-bi-deep);
+    --ptk-module-ink: #ffffff;
+    --ptk-module-orn: var(--ptk-bi-tint);
+    --ptk-module-fill: var(--ptk-bi-fill);
+}

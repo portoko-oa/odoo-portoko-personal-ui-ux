@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 PORTOKO
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <!-- "My Preferences" dialog (every internal user) -->
+    <record id="view_users_form_simple_modif_portoko" model="ir.ui.view">
+        <field name="name">res.users.preferences.form.portoko.web.responsive</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences_page']" position="inside">
+                <group name="portoko_ui" string="Display">
+                    <group>
+                        <field name="ptk_home_on_login" readonly="0" />
+                        <field name="ptk_chatter_position" readonly="0" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Settings > Users (administrators) -->
+    <record id="view_users_form_portoko" model="ir.ui.view">
+        <field name="name">res.users.form.portoko.web.responsive</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences']" position="inside">
+                <group name="portoko_ui" string="Display" invisible="share">
+                    <group>
+                        <field name="ptk_home_on_login" />
+                        <field name="ptk_chatter_position" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

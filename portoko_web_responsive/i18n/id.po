@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* portoko_web_responsive
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields.selection,name:portoko_web_responsive.selection__res_users__ptk_chatter_position__auto
+msgid "Automatic"
+msgstr "Otomatis"
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields,help:portoko_web_responsive.field_res_users__ptk_chatter_position
+msgid ""
+"Automatic: Odoo default (side panel only on very wide screens).\n"
+"Side: side panel from 1200px wide, useful on 1366px laptops.\n"
+"Bottom: always below the form."
+msgstr ""
+"Otomatis: bawaan Odoo (panel samping hanya di layar sangat lebar).\n"
+"Samping: panel samping mulai lebar 1200px, pas untuk laptop 1366px.\n"
+"Bawah: selalu di bawah formulir."
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields.selection,name:portoko_web_responsive.selection__res_users__ptk_chatter_position__bottom
+msgid "Bottom"
+msgstr "Bawah"
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields,field_description:portoko_web_responsive.field_res_users__ptk_chatter_position
+msgid "Chatter Position"
+msgstr "Posisi Chatter"
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Clear search"
+msgstr "Hapus pencarian"
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Close"
+msgstr "Tutup"
+
+#. module: portoko_web_responsive
+#: model_terms:ir.ui.view,arch_db:portoko_web_responsive.view_users_form_portoko
+#: model_terms:ir.ui.view,arch_db:portoko_web_responsive.view_users_form_simple_modif_portoko
+msgid "Display"
+msgstr "Tampilan"
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.js:0
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Home"
+msgstr "Beranda"
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.js:0
+msgid "No menu matches “%s”"
+msgstr "Tidak ada menu yang cocok dengan “%s”"
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields,field_description:portoko_web_responsive.field_res_users__ptk_home_on_login
+msgid "Open Home Screen After Login"
+msgstr "Buka Beranda Setelah Login"
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "PORTOKO"
+msgstr "PORTOKO"
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Search menus"
+msgstr "Cari menu"
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Search menus…"
+msgstr "Cari menu…"
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields,help:portoko_web_responsive.field_res_users__ptk_home_on_login
+msgid ""
+"Show the PORTOKO home screen (all apps) after signing in, instead of opening"
+" the first app. Links that point to a specific record or menu still open "
+"directly."
+msgstr ""
+"Tampilkan beranda PORTOKO (semua aplikasi) setelah login, bukan langsung "
+"membuka aplikasi pertama. Tautan ke record atau menu tertentu tetap langsung"
+" terbuka."
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields.selection,name:portoko_web_responsive.selection__res_users__ptk_chatter_position__side
+msgid "Side (wide screens)"
+msgstr "Samping (layar lebar)"
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Try another word, for example the app name."
+msgstr "Coba kata lain, misalnya nama aplikasinya."

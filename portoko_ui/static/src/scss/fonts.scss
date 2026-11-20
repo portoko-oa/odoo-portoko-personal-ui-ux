@@ -1,0 +1,37 @@
+// Bundled so screens work on warehouse intranets with no internet. SIL OFL 1.1, see static/fonts/.
+// Atkinson Hyperlegible (Braille Institute) is built so similar letters can't be confused: 0/O, 1/l/I, rn/m.
+@font-face {
+    font-family: "Atkinson Hyperlegible Next";
+    src: url("/portoko_ui/static/fonts/AtkinsonHyperlegibleNext-Variable.woff2") format("woff2");
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Atkinson Hyperlegible Next";
+    src: url("/portoko_ui/static/fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2") format("woff2");
+    font-weight: 200 800;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Atkinson Hyperlegible Mono";
+    src: url("/portoko_ui/static/fonts/AtkinsonHyperlegibleMono-Variable.woff2") format("woff2");
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Silkscreen";
+    src: url("/portoko_ui/static/fonts/Silkscreen-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Silkscreen";
+    src: url("/portoko_ui/static/fonts/Silkscreen-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}

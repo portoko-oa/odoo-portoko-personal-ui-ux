@@ -1,0 +1,130 @@
+// PORTOKO components. Opt-in: nothing applies until an element carries a .ptk-* class,
+// so installing portoko_ui never restyles standard Odoo screens.
+
+.ptk {
+    font-family: var(--ptk-font-sans);
+    color: var(--ptk-ink);
+    *, *::before, *::after { box-sizing: border-box; }
+}
+.ptk-mono { font-family: var(--ptk-font-mono); font-variant-numeric: tabular-nums; }
+.ptk-display { font-family: var(--ptk-font-display); font-weight: 700; }
+.ptk-num { font-family: var(--ptk-font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+
+// Button
+.ptk-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: var(--ptk-target-min); padding: 0 20px;
+    border-radius: var(--ptk-radius-pill); border: 0;
+    font: 600 15px/1 var(--ptk-font-sans);
+    background: var(--ptk-ink); color: var(--ptk-paper);
+    cursor: pointer; text-decoration: none; touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    &:focus-visible { outline: none; box-shadow: var(--ptk-ring-focus); }
+    &[disabled], &.disabled { opacity: .45; cursor: not-allowed; }
+    &:hover { color: var(--ptk-paper); }
+}
+.ptk-btn-secondary { background: transparent; color: var(--ptk-ink); box-shadow: inset 0 0 0 2px var(--ptk-ink);
+    &:hover { color: var(--ptk-ink); } }
+.ptk-btn-module { background: var(--ptk-module); color: var(--ptk-module-ink);
+    &:hover { color: var(--ptk-module-ink); } }
+.ptk-btn-xl { min-height: var(--ptk-target-primary); padding: 0 28px; font: 700 20px/1 var(--ptk-font-display); }
+.ptk-btn-block { width: 100%; }
+.ptk-key { font: 600 12px/1 var(--ptk-font-mono); padding: 4px 8px; border-radius: var(--ptk-radius-s); background: rgba(127, 127, 127, .22); }
+
+// Filter pill
+.ptk-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    min-height: var(--ptk-target-dense); padding: 0 18px;
+    border-radius: var(--ptk-radius-pill); border: 0; box-shadow: inset 0 0 0 1.5px var(--ptk-line);
+    background: var(--ptk-surface); color: var(--ptk-ink);
+    font: 500 15px/1 var(--ptk-font-sans); cursor: pointer; touch-action: manipulation;
+    &.active, &[aria-pressed="true"] { background: var(--ptk-ink); box-shadow: none; color: var(--ptk-paper); font-weight: 600; }
+}
+
+// Status chip: always text + icon + colour
+.ptk-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 11px; border-radius: var(--ptk-radius-pill);
+    font: 600 13px/1.3 var(--ptk-font-sans); white-space: nowrap;
+    svg { width: 13px; height: 13px; flex-shrink: 0; }
+}
+.ptk-status-ok { background: var(--ptk-ok-bg); color: var(--ptk-ok-fg); }
+.ptk-status-warn { background: var(--ptk-warn-bg); color: var(--ptk-warn-fg); }
+.ptk-status-stop { background: var(--ptk-stop-bg); color: var(--ptk-stop-fg); }
+.ptk-status-none { background: var(--ptk-surface-sunk); color: var(--ptk-muted); }
+
+// Card and KPI
+.ptk-card { background: var(--ptk-surface); border-radius: var(--ptk-radius-l); padding: 16px; }
+.ptk-kpi { display: flex; flex-direction: column; gap: 6px; }
+.ptk-kpi-label { font-size: 14px; color: var(--ptk-muted); }
+.ptk-kpi-value { font: 600 34px/1 var(--ptk-font-mono); font-variant-numeric: tabular-nums; }
+.ptk-kpi-note { font-size: 13px; font-weight: 600; color: var(--ptk-muted); }
+.ptk-kpi-note-warn { color: var(--ptk-warn-fg); }
+.ptk-kpi-note-ok { color: var(--ptk-ok-fg); }
+
+// Scan feedback
+.ptk-scan {
+    display: flex; align-items: center; gap: 12px;
+    border-radius: var(--ptk-radius-m); padding: 12px 14px;
+    .ptk-scan-text { display: flex; flex-direction: column; flex-grow: 1; min-width: 0; }
+    .ptk-scan-state { font-size: 13px; font-weight: 700; }
+    .ptk-scan-qty { font: 600 18px/1 var(--ptk-font-mono); }
+    .ptk-scan-icon { width: 30px; height: 30px; flex-shrink: 0; display: inline-flex; }
+}
+.ptk-scan-ok { background: var(--ptk-barcode-ink); color: #ffffff;
+    .ptk-scan-state { color: var(--ptk-barcode); }
+    .ptk-scan-icon svg { filter: drop-shadow(0 0 5px #{$ptk-barcode}); } }
+.ptk-scan-warn { background: var(--ptk-pos); color: var(--ptk-pos-ink); }
+.ptk-scan-stop { background: var(--ptk-stop-bg); color: var(--ptk-stop-fg); box-shadow: inset 0 0 0 2px var(--ptk-stop-fg); }
+.ptk-flash { animation: ptk-flash .5s ease-out; }
+@keyframes ptk-flash {
+    0% { box-shadow: 0 0 0 0 rgba(217, 255, 92, .9); filter: brightness(1.25); }
+    100% { box-shadow: 0 0 0 16px rgba(217, 255, 92, 0); filter: none; }
+}
+
+// Module header: the one loud place on a work screen
+.ptk-header {
+    position: relative; overflow: hidden;
+    border-radius: var(--ptk-radius-l);
+    background: var(--ptk-module); color: var(--ptk-module-ink);
+    padding: 18px 22px 32px;
+    .ptk-header-title { position: relative; margin: 0; font: 700 34px/1 var(--ptk-font-display); color: inherit; }
+    .ptk-header-sub { position: relative; margin-top: 6px; font: 500 13px/1.3 var(--ptk-font-mono); opacity: .92; }
+    .ptk-header-body { position: relative; margin-top: 12px; }
+    .ptk-header-corner { position: absolute; right: 0; top: 0; width: 150px; height: 150px; transform: scaleX(-1); pointer-events: none; }
+    .ptk-header-strip { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 16px; pointer-events: none; }
+}
+@media (max-width: 575.98px) {
+    .ptk-header { padding: 14px 16px 28px;
+        .ptk-header-title { font-size: 26px; padding-right: 72px; }
+        .ptk-header-sub { padding-right: 72px; }
+        .ptk-header-corner { width: 96px; height: 96px; } }
+}
+
+// Stepper
+.ptk-stepper {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--ptk-paper); border-radius: var(--ptk-radius-pill); padding: 2px;
+    button { width: var(--ptk-target-dense); height: var(--ptk-target-dense); border-radius: var(--ptk-radius-pill); border: 0; background: var(--ptk-surface); color: var(--ptk-ink); font-size: 20px; cursor: pointer; touch-action: manipulation; }
+    output { font: 500 16px/1 var(--ptk-font-mono); min-width: 28px; text-align: center; }
+}
+
+// Empty state: batik is welcome here
+.ptk-empty { background: var(--ptk-surface); border-radius: var(--ptk-radius-l); overflow: hidden;
+    .ptk-empty-art { height: 110px; background: var(--ptk-module-deep); display: flex; align-items: center; justify-content: center; }
+    .ptk-empty-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; }
+    .ptk-empty-title { font-weight: 700; font-size: 16px; }
+    .ptk-empty-text { font-size: 14px; color: var(--ptk-muted); line-height: 1.45; }
+}
+
+// Data table helpers for custom screens (Odoo list views keep their own look)
+.ptk-table { width: 100%; border-collapse: collapse; font-size: 15px;
+    th { position: sticky; top: 0; background: var(--ptk-surface); text-align: left; font: 500 13px/1.3 var(--ptk-font-sans); color: var(--ptk-muted); padding: 10px 12px; }
+    td { padding: 10px 12px; border-top: 1px solid var(--ptk-line); }
+    tbody tr:nth-child(even) { background: var(--ptk-surface-sunk); }
+    .ptk-num { text-align: right; }
+}
+
+.ptk-orn { display: block; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) { .ptk-flash { animation: none; } }

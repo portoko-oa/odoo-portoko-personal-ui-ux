@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* portoko_web_responsive
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-17 18:05+0000\n"
+"PO-Revision-Date: 2026-11-17 18:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields.selection,name:portoko_web_responsive.selection__res_users__ptk_chatter_position__auto
+msgid "Automatic"
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields,help:portoko_web_responsive.field_res_users__ptk_chatter_position
+msgid ""
+"Automatic: Odoo default (side panel only on very wide screens).\n"
+"Side: side panel from 1200px wide, useful on 1366px laptops.\n"
+"Bottom: always below the form."
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields.selection,name:portoko_web_responsive.selection__res_users__ptk_chatter_position__bottom
+msgid "Bottom"
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields,field_description:portoko_web_responsive.field_res_users__ptk_chatter_position
+msgid "Chatter Position"
+msgstr ""
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Clear search"
+msgstr ""
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Close"
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model_terms:ir.ui.view,arch_db:portoko_web_responsive.view_users_form_portoko
+#: model_terms:ir.ui.view,arch_db:portoko_web_responsive.view_users_form_simple_modif_portoko
+msgid "Display"
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model:ir.model,name:portoko_web_responsive.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.js:0
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Home"
+msgstr ""
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.js:0
+msgid "No menu matches “%s”"
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields,field_description:portoko_web_responsive.field_res_users__ptk_home_on_login
+msgid "Open Home Screen After Login"
+msgstr ""
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "PORTOKO"
+msgstr ""
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Search menus"
+msgstr ""
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Search menus…"
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields,help:portoko_web_responsive.field_res_users__ptk_home_on_login
+msgid ""
+"Show the PORTOKO home screen (all apps) after signing in, instead of opening"
+" the first app. Links that point to a specific record or menu still open "
+"directly."
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model:ir.model.fields.selection,name:portoko_web_responsive.selection__res_users__ptk_chatter_position__side
+msgid "Side (wide screens)"
+msgstr ""
+
+#. module: portoko_web_responsive
+#. odoo-javascript
+#: code:addons/portoko_web_responsive/static/src/apps_menu/apps_menu.xml:0
+msgid "Try another word, for example the app name."
+msgstr ""
+
+#. module: portoko_web_responsive
+#: model:ir.model,name:portoko_web_responsive.model_res_users
+msgid "User"
+msgstr ""
